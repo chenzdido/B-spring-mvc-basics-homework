@@ -6,6 +6,9 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
+import javax.validation.ConstraintValidator;
+import javax.validation.ConstraintViolationException;
+
 @ControllerAdvice
 public class GlobalExceptionHandler {
     @ExceptionHandler(UserNotFoundException.class)
@@ -18,6 +21,19 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ErrorResult> handle(MethodArgumentNotValidException ex){
         String message = ex.getBindingResult().getFieldError().getDefaultMessage();
         ErrorResult errorResult = new ErrorResult("message");
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResult);
+    }
+
+    @ExceptionHandler(ConstraintViolationException.class)
+    public ResponseEntity<ErrorResult> handle(ConstraintViolationException ex){
+        String message=ex.getConstraintViolations().stream().findFirst().toString();
+        ErrorResult errorResult = new ErrorResult("message");
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResult);
+    }
+
+    @ExceptionHandler(UserNameDuplicate.class)
+    public ResponseEntity<ErrorResult> handle(UserNameDuplicate ex){
+        ErrorResult errorResult = new ErrorResult(ex.getMessage());
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResult);
     }
 }

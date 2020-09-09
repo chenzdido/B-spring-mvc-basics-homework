@@ -22,7 +22,9 @@ public class UserService {
     }
 
     public void createUser(User user){
-
+        if(userMap.get(user.getUsername())!=null){
+            throw new UserNameDuplicate("username already exists");
+        }
         User newUser =new User(user.getUsername(),user.getPassword(),user.getEmail());
         userMap.put(newUser.getUsername(),newUser);
     }
