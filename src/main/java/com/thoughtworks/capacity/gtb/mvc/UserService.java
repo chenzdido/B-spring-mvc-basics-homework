@@ -22,6 +22,7 @@ public class UserService {
     }
 
     public void createUser(User user){
+
         User newUser =new User(user.getUsername(),user.getPassword(),user.getEmail());
         userMap.put(newUser.getUsername(),newUser);
     }

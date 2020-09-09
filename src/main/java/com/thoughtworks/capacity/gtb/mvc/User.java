@@ -14,7 +14,7 @@ public class User {
     private Integer id;
     @NotBlank
     @Size(max=10,min=3)
-    @Pattern(regexp ="^w+$")
+    @Pattern(regexp ="^\\w+$")
     private String username;
     @NotBlank
     @Size(max=12,min=5)
