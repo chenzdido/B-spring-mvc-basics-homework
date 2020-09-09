@@ -28,6 +28,9 @@ public class UserService {
 
     public User login(String username,String password){
         User user=userMap.get(username);
+        if(user==null){
+            throw new UserNotFoundException("user not found");
+        }
         if(user.getPassword().equals(password)){
             return user;
         }
