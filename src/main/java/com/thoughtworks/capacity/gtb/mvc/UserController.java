@@ -4,6 +4,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class UserController {
@@ -20,8 +21,13 @@ public class UserController {
 
     @PostMapping("/register")
     @ResponseStatus(HttpStatus.CREATED)
+    public void registerUser(@RequestBody User user){
+        this.userService.createUser(user);
+    }
+
+    @GetMapping("/login")
     @ResponseBody
-    public User registerUser(@RequestBody User user){
-        return this.userService.createUser(user);
+    public User userLogin(@RequestParam("username") String  username, @RequestParam("password") String  password){
+        return userService.login(username,password);
     }
 }
