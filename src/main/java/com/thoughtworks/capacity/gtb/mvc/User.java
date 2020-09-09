@@ -15,7 +15,7 @@ public class User {
     private String email;
 
     User(String username,String password,String email){
-        id=++count;
+        this.id = ++this.count;
         this.username=username;
         this.password=password;
         this.email=email;
