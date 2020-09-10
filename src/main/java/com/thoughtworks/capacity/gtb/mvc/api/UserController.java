@@ -1,5 +1,7 @@
-package com.thoughtworks.capacity.gtb.mvc;
+package com.thoughtworks.capacity.gtb.mvc.api;
 
+import com.thoughtworks.capacity.gtb.mvc.domain.User;
+import com.thoughtworks.capacity.gtb.mvc.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;

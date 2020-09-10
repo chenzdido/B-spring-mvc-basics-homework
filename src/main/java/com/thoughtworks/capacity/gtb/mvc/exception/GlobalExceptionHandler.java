@@ -1,4 +1,4 @@
-package com.thoughtworks.capacity.gtb.mvc;
+package com.thoughtworks.capacity.gtb.mvc.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -6,7 +6,6 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
-import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintViolationException;
 
 @ControllerAdvice

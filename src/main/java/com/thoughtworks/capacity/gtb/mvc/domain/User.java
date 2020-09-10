@@ -1,4 +1,4 @@
-package com.thoughtworks.capacity.gtb.mvc;
+package com.thoughtworks.capacity.gtb.mvc.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -22,7 +22,7 @@ public class User {
     @Email
     private String email;
 
-    User(String username,String password,String email){
+    public User(String username, String password, String email){
         this.id = ++this.count;
         this.username=username;
         this.password=password;
