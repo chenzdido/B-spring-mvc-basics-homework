@@ -12,27 +12,33 @@ import javax.validation.ConstraintViolationException;
 public class GlobalExceptionHandler {
     @ExceptionHandler(UserNotFoundException.class)
     public ResponseEntity<ErrorResult> handle(UserNotFoundException ex){
-        ErrorResult errorResult = new ErrorResult(ex.getMessage());
+        ErrorResult errorResult = new ErrorResult(404,ex.getMessage());
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorResult);
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ErrorResult> handle(MethodArgumentNotValidException ex){
         String message = ex.getBindingResult().getFieldError().getDefaultMessage();
-        ErrorResult errorResult = new ErrorResult("message");
+        ErrorResult errorResult = new ErrorResult(400,"message");
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResult);
     }
 
     @ExceptionHandler(ConstraintViolationException.class)
     public ResponseEntity<ErrorResult> handle(ConstraintViolationException ex){
         String message=ex.getConstraintViolations().stream().findFirst().toString();
-        ErrorResult errorResult = new ErrorResult("message");
+        ErrorResult errorResult = new ErrorResult(400,"message");
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResult);
     }
 
     @ExceptionHandler(UserNameDuplicate.class)
     public ResponseEntity<ErrorResult> handle(UserNameDuplicate ex){
-        ErrorResult errorResult = new ErrorResult(ex.getMessage());
+        ErrorResult errorResult = new ErrorResult(400,ex.getMessage());
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResult);
+    }
+
+    @ExceptionHandler(UserPasswordWrong.class)
+    public ResponseEntity<ErrorResult> handle(UserPasswordWrong ex){
+        ErrorResult errorResult = new ErrorResult(400,ex.getMessage());
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResult);
     }
 }

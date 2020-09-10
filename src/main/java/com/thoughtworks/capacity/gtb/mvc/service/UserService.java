@@ -3,6 +3,7 @@ package com.thoughtworks.capacity.gtb.mvc.service;
 import com.thoughtworks.capacity.gtb.mvc.exception.UserNameDuplicate;
 import com.thoughtworks.capacity.gtb.mvc.exception.UserNotFoundException;
 import com.thoughtworks.capacity.gtb.mvc.domain.User;
+import com.thoughtworks.capacity.gtb.mvc.exception.UserPasswordWrong;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -39,7 +40,9 @@ public class UserService {
         }
         if(user.getPassword().equals(password)){
             return user;
+        }else{
+            throw new UserPasswordWrong("password wrong");
         }
-        return null;
+
     }
 }
