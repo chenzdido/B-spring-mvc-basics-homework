@@ -12,14 +12,14 @@ import javax.validation.constraints.*;
 public class User {
     private static Integer count=0;
     private Integer id;
-    @NotBlank
-    @Size(max=10,min=3)
-    @Pattern(regexp ="^\\w+$")
+    @NotBlank(message = "username is not empty")
+    @Size(max=10,min=3,message = "user name length is 3 to 10")
+    @Pattern(regexp ="^\\w+$",message = "username is incorrectly named")
     private String username;
-    @NotBlank
-    @Size(max=12,min=5)
+    @NotBlank(message = "password is not empty")
+    @Size(max=12,min=5,message = "password length is 5 to 12")
     private String password;
-    @Email
+    @Email(message = "invalid email address")
     private String email;
 
     public User(String username, String password, String email){
