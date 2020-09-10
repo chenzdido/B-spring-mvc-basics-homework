@@ -31,7 +31,7 @@ public class UserController {
 
     @GetMapping("/login")
     @ResponseBody
-    public User userLogin(@RequestParam("username") String  username, @RequestParam("password") String  password){
+    public User userLogin(@RequestParam("username") @Valid String  username, @RequestParam("password") @Valid String  password){
         return userService.login(username,password);
     }
 }
